@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Carga</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <div class="hearts-container"></div> <!-- Contenedor para los corazones -->
+        <div class="clouds">
+            <!-- Nubes animadas -->
+            <img src="img/nube3.png" class="cloud-image cloud-image-1" alt="Nube 1">
+            <img src="img/nube3.png" class="cloud-image cloud-image-2" alt="Nube 2">
+            <img src="img/nube3.png" class="cloud-image cloud-image-3" alt="Nube 3">
+            <img src="img/nube1.png" class="cloud-image cloud-image-4" alt="Nube 4">
+            <img src="img/nube2.png" class="cloud-image cloud-image-5" alt="Nube 5">
+            <img src="img/nube1.png" class="cloud-image cloud-image-6" alt="Nube 6">
+        </div>
+
+        <div class="container">
+            <div class="image-container">
+                <img src="img/kuromi.png" alt="Kuromi 1" class="kuromi">
+                <div class="envelope">
+                    <img id="letter" src="img/carta.png" alt="Carta con corazón">
+                </div>
+                <img src="img/kuromi2.png" alt="Kuromi 2" class="kuromi">
+            </div>
+            <div id="countdown">Nueva carta en: 0d 0h 0m 0s</div>
+            <div id="button-container" class="hidden">
+                <button id="yes-button">Sí</button>
+                <button id="no-button">No</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Manejo del temporizador
+        let timeExpired = true;
+        const letter = document.getElementById("letter");
+        const buttonContainer = document.getElementById("button-container");
+        const yesButton = document.getElementById("yes-button");
+        const noButton = document.getElementById("no-button");
+
+        if (timeExpired) {
+            setTimeout(() => {
+                document.getElementById("countdown").innerText = "¿Deseas recibir esta carta?";
+                buttonContainer.classList.remove("hidden"); // Muestra los botones
+            }, 2000); // Simula el tiempo agotado con un retraso de 2 segundos
+        }
+
+        // Función para cambiar dinámicamente el tamaño de los botones
+        function adjustButtonSize(button, increment) {
+            const currentSize = parseFloat(window.getComputedStyle(button).fontSize);
+            button.style.fontSize = (currentSize + increment) + 'px';
+        }
+
+        // Eventos para botones
+        yesButton.addEventListener("click", () => {
+            letter.classList.add("open-letter"); // Aplica la animación de apertura de carta
+            adjustButtonSize(yesButton, 2); // Incrementa el tamaño del botón "Sí"
+            adjustButtonSize(noButton, -2); // Reduce el tamaño del botón "No"
+        });
+
+        noButton.addEventListener("click", () => {
+            adjustButtonSize(noButton, -2); // Reduce aún más el tamaño del botón "No"
+            adjustButtonSize(yesButton, 2); // Incrementa el tamaño del botón "Sí"
+            document.getElementById("countdown").innerText = "La carta permanecerá cerrada.";
+        });
+    </script>
+</body>
+</html>

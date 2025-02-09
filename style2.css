@@ -1,0 +1,117 @@
+/* Estilos generales */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #fdf7e3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor de la carta */
+.letter-container {
+    background-color: white;
+    width: 70%;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: relative;
+    line-height: 1.8;
+}
+
+/* Encabezado de la carta */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+/* Fecha */
+.date {
+    text-align: right;
+    color: #757575;
+    font-size: 1em;
+}
+
+/* Firma */
+.signature {
+    text-align: left;
+    margin-top: 40px;
+    font-style: italic;
+}
+
+/* Imagen de Snoopy */
+.snoopy {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 150px;
+    height: auto;
+    opacity: 0.9;
+}
+
+/* Estilo de párrafos */
+p {
+    margin: 15px 0;
+    text-align: justify;
+    font-size: 1.1em;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.letter-container {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.snoopy-top-left {
+    width: 70px;
+    height: auto;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.date {
+    font-size: 1em;
+    color: gray;
+}
+
+.arrow-image {
+    width: 100px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.flowers {
+    width: 70px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.signature {
+    font-style: italic;
+}
+
+.snoopy-heart {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+.linea-decorativa {
+    width: 70px;
+    height: auto;
+    vertical-align: middle;
+    margin-left: 10px;
+}
