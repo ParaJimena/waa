@@ -34,37 +34,66 @@
             </div>
         </div>
     </div>
+
     <script>
-        // Manejo del temporizador
         let timeExpired = true;
         const letter = document.getElementById("letter");
         const buttonContainer = document.getElementById("button-container");
         const yesButton = document.getElementById("yes-button");
         const noButton = document.getElementById("no-button");
 
+        // Función para generar corazones animados
+        function createHeart() {
+            const heartsContainer = document.querySelector(".hearts-container");
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+
+            // Posición aleatoria en el ancho de la pantalla
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+
+            heartsContainer.appendChild(heart);
+
+            // Remover el corazón una vez que la animación termine
+            heart.addEventListener("animationend", () => {
+                heart.remove();
+            });
+        }
+
+        // Genera corazones periódicamente
+        setInterval(createHeart, 500);
+
+        // Mostrar mensaje y botones si ha expirado el tiempo
         if (timeExpired) {
             setTimeout(() => {
                 document.getElementById("countdown").innerText = "¿Deseas recibir esta carta?";
-                buttonContainer.classList.remove("hidden"); // Muestra los botones
-            }, 2000); // Simula el tiempo agotado con un retraso de 2 segundos
+                buttonContainer.classList.remove("hidden");
+            }, 2000);
         }
 
-        // Función para cambiar dinámicamente el tamaño de los botones
+        // Ajusta el tamaño de los botones
         function adjustButtonSize(button, increment) {
-            const currentSize = parseFloat(window.getComputedStyle(button).fontSize);
-            button.style.fontSize = (currentSize + increment) + 'px';
+            let currentSize = parseFloat(window.getComputedStyle(button).fontSize);
+            let newSize = currentSize + increment;
+            if (newSize > 10 && newSize < 40) { // Evita que el botón sea demasiado pequeño o grande
+                button.style.fontSize = newSize + 'px';
+            }
         }
 
-        // Eventos para botones
+        // Animación y redirección al aceptar la carta
         yesButton.addEventListener("click", () => {
-            letter.classList.add("open-letter"); // Aplica la animación de apertura de carta
-            adjustButtonSize(yesButton, 2); // Incrementa el tamaño del botón "Sí"
-            adjustButtonSize(noButton, -2); // Reduce el tamaño del botón "No"
+            letter.classList.add("open-letter");
+            adjustButtonSize(yesButton, 4);
+            adjustButtonSize(noButton, -4);
+            setTimeout(() => {
+                window.location.href = "carta.html"; // Redirige a carta.html
+            }, 1000); // Retraso para ver la animación de apertura
         });
 
+        // Mensaje al rechazar la carta
         noButton.addEventListener("click", () => {
-            adjustButtonSize(noButton, -2); // Reduce aún más el tamaño del botón "No"
-            adjustButtonSize(yesButton, 2); // Incrementa el tamaño del botón "Sí"
+            adjustButtonSize(noButton, -4);
+            adjustButtonSize(yesButton, 4);
             document.getElementById("countdown").innerText = "La carta permanecerá cerrada.";
         });
     </script>
